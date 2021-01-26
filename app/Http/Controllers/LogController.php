@@ -22,14 +22,14 @@ class LogController extends Controller
 			->orderBy('issued_at', 'DESC');
 
 			// dd($logs);
-		
+
 		$logs = $logs->get();
 
 		for($i=0; $i<count($logs); $i++){
-	        
+
 	        $issue_id = $logs[$i]['book_issue_id'];
 	        $student_id = $logs[$i]['student_id'];
-	        
+
 	        // to get the name of the book from book issue id
 	        $issue = Issue::find($issue_id);
 	        $book_id = $issue->book_id;
@@ -63,14 +63,14 @@ class LogController extends Controller
 		$data = $request->all()['data'];
 		$bookID = $data['bookID'];
 		$studentID = $data['studentID'];
-		
+
 		$student = Student::find($studentID);
-		
+
 		if($student == NULL){
 			return "Invalid Student ID";
 		} else {
 			$approved = $student->approved;
-			
+
 			if($approved == 0){
 
 				return "Student still not approved by Admin Librarian";
@@ -78,9 +78,9 @@ class LogController extends Controller
 			} else {
 				$books_issued = $student->books_issued;
 				$category = $student->category;
-				
+
 				$max_allowed = StudentCategories::where('cat_id', '=', $category)->firstOrFail()->max_allowed;
-				
+
 				if($books_issued >= $max_allowed){
 
 					return 'Student cannot issue any more books';
@@ -151,7 +151,7 @@ class LogController extends Controller
 		if(!$log->count()){
 			return 'Invalid Book ID entered or book already returned';
 		} else {
-		
+
 			$log = Logs::where($conditions)
 				->firstOrFail();
 
@@ -176,11 +176,11 @@ class LogController extends Controller
 				$issue = Issue::find($issue_id);
 				$issue->available_status = 1;
 				$issue->save();
-				
+
 			});
 
 			return 'Successfully returned';
-			
+
 		}
 	}
 

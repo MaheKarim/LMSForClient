@@ -20,7 +20,7 @@
                             <th>Student ID</th>
                             <th>Student Name</th>
                             <th>Issued On</th>
-                            <th>Return Date</th>                        
+
                         </tr>
                     </thead>
                     <tbody id="issue-logs-table">
