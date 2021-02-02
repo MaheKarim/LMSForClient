@@ -14,13 +14,24 @@
                 -
                 <small>table class="table table-striped table-bordered table-condensed"</small>
             </p> -->
-            <div class="controls">
-                <select class="" id="category_fill">
-                    @foreach($categories_list as $category)
-                        <option value="{{ $category->id }}">{{ $category->category }}</option>
-                    @endforeach
-                </select>
+            {{--  <div class="container">
+            <div class="col-sm-4 pull-right">
+
             </div>
+        </div>  --}}
+
+        <div class="container">
+            <div class="row">
+                <div class="span4 pull-right">
+                    <select class="" id="category_fill">
+                        @foreach($categories_list as $category)
+                            <option value="{{ $category->id }}">{{ $category->category }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+            </div>
+        </div>
             <table class="table table-striped table-bordered table-condensed">
                 <thead>
                     <tr>
